@@ -151,10 +151,16 @@ export const SectionControl: React.FC<any> = ({ title, children, collapsible, de
 export const CopyableLabel: React.FC<any> = ({ label, value, ...props }) => {
   const [copied, setCopied] = React.useState(false);
   
-  const handleCopy = () => {
-    navigator.clipboard.writeText(value);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = async () => {
+    try {
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(value);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      }
+    } catch (error) {
+      console.error('Failed to copy:', error);
+    }
   };
   
   return (

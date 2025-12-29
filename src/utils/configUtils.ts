@@ -8,8 +8,8 @@ export const parseConfig = (input: string): PlaygroundConfig | null => {
     return JSON.parse(input) as PlaygroundConfig;
   } catch (jsonError) {
     try {
-      // Try YAML if JSON fails
-      return yaml.load(input) as PlaygroundConfig;
+      // Try YAML if JSON fails - use safe schema to prevent code execution
+      return yaml.load(input, { schema: yaml.FAILSAFE_SCHEMA }) as PlaygroundConfig;
     } catch (yamlError) {
       console.error('Failed to parse config:', yamlError);
       return null;
@@ -105,10 +105,25 @@ export const validateConfig = (config: any): { valid: boolean; errors: string[] 
 // Copy text to clipboard
 export const copyToClipboard = async (text: string): Promise<boolean> => {
   try {
+    // Check if clipboard API is available
+    if (!navigator.clipboard) {
+      console.error('Clipboard API not available');
+      return false;
+    }
+    
     await navigator.clipboard.writeText(text);
     return true;
   } catch (error) {
-    console.error('Failed to copy to clipboard:', error);
+    // Handle permission errors and other failures
+    if (error instanceof Error) {
+      if (error.name === 'NotAllowedError') {
+        console.error('Clipboard access denied. Please grant clipboard permissions.');
+      } else {
+        console.error('Failed to copy to clipboard:', error.message);
+      }
+    } else {
+      console.error('Failed to copy to clipboard:', error);
+    }
     return false;
   }
 };

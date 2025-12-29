@@ -2,6 +2,11 @@ import React from 'react';
 import * as AzureComponents from '../components/AzureComponents';
 import { ComponentRegistry } from '../types';
 
+// PasswordBox wrapper component
+const PasswordBox: React.FC<any> = (props) => {
+  return React.createElement(AzureComponents.TextField, { type: 'password', ...props });
+};
+
 // Create the component registry mapping
 export const componentRegistry: ComponentRegistry = {
   // Custom Azure components
@@ -31,7 +36,7 @@ export const componentRegistry: ComponentRegistry = {
   // Form Controls
   'TextField': AzureComponents.TextField,
   'TextBox': AzureComponents.TextField,
-  'PasswordBox': (props: any) => React.createElement(AzureComponents.TextField, { type: 'password', ...props }),
+  'PasswordBox': PasswordBox,
   'Checkbox': AzureComponents.Checkbox,
   'Toggle': AzureComponents.Toggle,
   'Dropdown': AzureComponents.Dropdown,
