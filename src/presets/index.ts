@@ -242,14 +242,9 @@ export const presets: ExportPreset[] = [
               {
                 component: 'Stack',
                 horizontal: true,
-                horizontalAlign: 'space-between',
+                horizontalAlign: 'end',
                 verticalAlign: 'center',
                 children: [
-                  {
-                    component: 'Text',
-                    variant: 'xLarge',
-                    style: { fontWeight: 600 }
-                  },
                   {
                     component: 'SearchBox',
                     placeholder: 'Search resources'
@@ -461,11 +456,6 @@ export const presets: ExportPreset[] = [
                 style: { flex: 1, padding: '24px' },
                 tokens: { childrenGap: 24 },
                 children: [
-                  {
-                    component: 'Text',
-                    variant: 'xLarge',
-                    style: { fontWeight: 600 }
-                  },
                   {
                     component: 'InfoBox',
                     type: 'info',
