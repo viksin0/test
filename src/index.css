@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #FAF9F8;
+}
+
+code {
+  font-family: 'Cascadia Code', 'Courier New', monospace;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Fluent UI overrides for Azure Portal styling */
+.ms-Button {
+  border-radius: 2px;
+}
+
+.ms-TextField-fieldGroup {
+  border-radius: 2px;
+}
+
+.ms-Dropdown {
+  border-radius: 2px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F3F2F1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C8C6C4;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A19F9D;
+}
